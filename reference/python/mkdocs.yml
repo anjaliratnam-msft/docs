@@ -410,6 +410,7 @@ nav:
       - AWS: integrations/langchain_aws.md
       - Azure AI: integrations/langchain_azure_ai.md
       - Azure Dynamic Sessions: integrations/langchain_azure_dynamic_sessions.md
+      - Azure Storage: integrations/langchain_azure_storage.md
       - Cerebras: integrations/langchain_cerebras.md
       - Chroma: integrations/langchain_chroma.md
       - Cohere: integrations/langchain_cohere.md
