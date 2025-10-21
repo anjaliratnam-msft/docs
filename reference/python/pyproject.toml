@@ -158,7 +158,6 @@ langchain-google-genai = { git = "https://github.com/langchain-ai/langchain-goog
 langchain-google-vertexai = { git = "https://github.com/langchain-ai/langchain-google.git", subdirectory = "libs/vertexai" }
 langchain-ibm = { git = "https://github.com/langchain-ai/langchain-ibm.git", subdirectory = "libs/ibm" }
 langchain-milvus = { git = "https://github.com/langchain-ai/langchain-milvus.git", subdirectory = "libs/milvus" }
-langchain-mongodb = { git = "https://github.com/langchain-ai/langchain-mongodb.git", subdirectory = "libs/langchain-mongodb" }
 langchain-neo4j = { git = "https://github.com/langchain-ai/langchain-neo4j.git", subdirectory = "libs/neo4j" }
 langchain-nvidia-ai-endpoints = { git = "https://github.com/langchain-ai/langchain-nvidia.git", subdirectory = "libs/ai-endpoints" }
 langchain-pinecone = { git = "https://github.com/langchain-ai/langchain-pinecone.git", subdirectory = "libs/pinecone" }
