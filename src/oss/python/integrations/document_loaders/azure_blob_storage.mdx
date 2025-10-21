@@ -16,20 +16,22 @@ title: Azure Blob Storage Loader
 This notebook covers how to load document objects from a container on `Azure Blob Storage`. For more detailed documentation on the document loader, see the [Azure Blob Storage Loader API Reference](https://reference.langchain.com/python/integrations/langchain_azure_storage/).
 
 > [!NOTE]
-> This document loader replaces the previous [`AzureBlobStorageFileLoader`](/oss/python/integrations/document_loaders/azure_blob_storage_file) and [`AzureBlobStorageContainerLoader`](/oss/python/integrations/document_loaders/azure_blob_storage_container) from `langchain_community`. It is recommended to use this new loader for better flexibility and customization when loading documents from Azure Blob Storage. For detailed instructions on migrating to the new loader, refer to the [migration guide](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-storage/README.md#migrating-from-langchain-community-azure-storage-document-loaders)
+> This document loader replaces the previous [`AzureBlobStorageFileLoader`](/oss/integrations/document_loaders/azure_blob_storage_file) and [`AzureBlobStorageContainerLoader`](/oss/integrations/document_loaders/azure_blob_storage_container) from `langchain_community`. It is recommended to use this new loader for better flexibility and customization when loading documents from Azure Blob Storage. For detailed instructions on migrating to the new loader, refer to the [migration guide](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-storage/README.md#migrating-from-langchain-community-azure-storage-document-loaders)
 
 
-## Installation
+## Setup
 
 ```python
 pip install -qU  langchain-azure-storage
 ```
 
+```python
+from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
+```
+
 ## Load from container
 
 ```python
-from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
-
 loader = AzureBlobStorageLoader(
     account_url="https://<storage-account-name>.blob.core.windows.net",
     container="<container-name>",
@@ -76,16 +78,16 @@ from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
 
 # Override with SAS token
 loader = AzureBlobStorageLoader(
-    "https://<my-storage-account-name>.blob.core.windows.net",
-    "<my-container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     credential=AzureSasCredential("<sas-token>")
 )
 
 # Override with more specific token credential than the entire
 # default credential chain (e.g., system-assigned managed identity)
 loader = AzureBlobStorageLoader(
-    "https://<my-storage-account-name>.blob.core.windows.net",
-    "<my-container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     credential=ManagedIdentityCredential()
 )
 ```
