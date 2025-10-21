@@ -143,34 +143,34 @@ langchain-community = { git = "https://github.com/langchain-ai/langchain-communi
 langchain-mcp-adapters = { git = "https://github.com/langchain-ai/langchain-mcp-adapters.git" }
 
 ## Other langchain-ai org packages (alphabetical)
-langchain-astradb = { path = "../../../langchain-datastax/libs/astradb", editable = true }
-langchain-ai21 = { path = "../../../langchain-ai21/libs/ai21", editable = true }
-langchain-aws = { path = "../../../langchain-aws/libs/aws", editable = true }
-langchain-azure-ai = { path = "../../../langchain-azure/libs/azure-ai", editable = true }
-langchain-azure-dynamic-sessions = { path = "../../../langchain-azure/libs/azure-dynamic-sessions", editable = true }
-langchain-azure-storage = { path = "../../../langchain-azure/libs/azure-storage", editable = true }
-langchain-cerebras = { path = "../../../langchain-cerebras/libs/cerebras", editable = true }
-langchain-cohere = { path = "../../../langchain-cohere/libs/cohere", editable = true }
-langchain-db2 = { path = "../../../langchain-ibm/libs/langchain-db2", editable = true }
-langchain-elasticsearch = { path = "../../../langchain-elastic/libs/elasticsearch", editable = true }
-langchain-google-community = { path = "../../../langchain-google/libs/community", editable = true }
-langchain-google-genai = { path = "../../../langchain-google/libs/genai", editable = true }
-langchain-google-vertexai = { path = "../../../langchain-google/libs/vertexai", editable = true }
-langchain-ibm = { path = "../../../langchain-ibm/libs/ibm", editable = true }
-langchain-milvus = { path = "../../../langchain-milvus/libs/milvus", editable = true }
-langchain-mongodb = { path = "../../../langchain-mongodb/libs/langchain-mongodb", editable = true }
-langchain-neo4j = { path = "../../../langchain-neo4j/libs/neo4j", editable = true }
-langchain-nvidia-ai-endpoints = { path = "../../../langchain-nvidia/libs/ai-endpoints", editable = true }
-langchain-pinecone = { path = "../../../langchain-pinecone/libs/pinecone", editable = true }
-langchain-postgres = { path = "../../../langchain-postgres", editable = true }
-langchain-redis = { path = "../../../langchain-redis/libs/redis", editable = true }
-langchain-sema4 = { path = "../../../langchain-sema4/libs/sema4", editable = true }
-langchain-snowflake = { path = "../../../langchain-snowflake/libs/snowflake", editable = true }
-langchain-sqlserver = { path = "../../../langchain-azure/libs/sqlserver", editable = true }
-langchain-together = { path = "../../../langchain-together/libs/together", editable = true }
-langchain-unstructured = { path = "../../../langchain-unstructured/libs/unstructured", editable = true }
-langchain-upstage = { path = "../../../langchain-upstage/libs/upstage", editable = true }
-langchain-weaviate = { path = "../../../langchain-weaviate/libs/weaviate", editable = true }
+langchain-astradb = { git = "https://github.com/langchain-ai/langchain-datastax.git", subdirectory = "libs/astradb" }
+langchain-ai21 = { git = "https://github.com/langchain-ai/langchain-ai21.git", subdirectory = "libs/ai21" }
+langchain-aws = { git = "https://github.com/langchain-ai/langchain-aws.git", subdirectory = "libs/aws" }
+langchain-azure-ai = { git = "https://github.com/langchain-ai/langchain-azure.git", subdirectory = "libs/azure-ai" }
+langchain-azure-dynamic-sessions = { git = "https://github.com/langchain-ai/langchain-azure.git", subdirectory = "libs/azure-dynamic-sessions" }
+langchain-azure-storage = { git = "https://github.com/langchain-ai/langchain-azure.git", subdirectory = "libs/azure-storage" }
+langchain-cerebras = { git = "https://github.com/langchain-ai/langchain-cerebras.git", subdirectory = "libs/cerebras" }
+langchain-cohere = { git = "https://github.com/langchain-ai/langchain-cohere.git", subdirectory = "libs/cohere" }
+langchain-db2 = { git = "https://github.com/langchain-ai/langchain-ibm.git", subdirectory = "libs/langchain-db2" }
+langchain-elasticsearch = { git = "https://github.com/langchain-ai/langchain-elastic.git", subdirectory = "libs/elasticsearch" }
+langchain-google-community = { git = "https://github.com/langchain-ai/langchain-google.git", subdirectory = "libs/community" }
+langchain-google-genai = { git = "https://github.com/langchain-ai/langchain-google.git", subdirectory = "libs/genai" }
+langchain-google-vertexai = { git = "https://github.com/langchain-ai/langchain-google.git", subdirectory = "libs/vertexai" }
+langchain-ibm = { git = "https://github.com/langchain-ai/langchain-ibm.git", subdirectory = "libs/ibm" }
+langchain-milvus = { git = "https://github.com/langchain-ai/langchain-milvus.git", subdirectory = "libs/milvus" }
+langchain-mongodb = { git = "https://github.com/langchain-ai/langchain-mongodb.git", subdirectory = "libs/langchain-mongodb" }
+langchain-neo4j = { git = "https://github.com/langchain-ai/langchain-neo4j.git", subdirectory = "libs/neo4j" }
+langchain-nvidia-ai-endpoints = { git = "https://github.com/langchain-ai/langchain-nvidia.git", subdirectory = "libs/ai-endpoints" }
+langchain-pinecone = { git = "https://github.com/langchain-ai/langchain-pinecone.git", subdirectory = "libs/pinecone" }
+langchain-postgres = { git = "https://github.com/langchain-ai/langchain-postgres.git" }
+langchain-redis = { git = "https://github.com/langchain-ai/langchain-redis.git", subdirectory = "libs/redis" }
+langchain-sema4 = { git = "https://github.com/langchain-ai/langchain-sema4.git", subdirectory = "libs/sema4" }
+langchain-snowflake = { git = "https://github.com/langchain-ai/langchain-snowflake.git", subdirectory = "libs/snowflake" }
+langchain-sqlserver = { git = "https://github.com/langchain-ai/langchain-azure.git", subdirectory = "libs/sqlserver" }
+langchain-together = { git = "https://github.com/langchain-ai/langchain-together.git", subdirectory = "libs/together" }
+langchain-unstructured = { git = "https://github.com/langchain-ai/langchain-unstructured.git", subdirectory = "libs/unstructured" }
+langchain-upstage = { git = "https://github.com/langchain-ai/langchain-upstage.git", subdirectory = "libs/upstage" }
+langchain-weaviate = { git = "https://github.com/langchain-ai/langchain-weaviate.git", subdirectory = "libs/weaviate", branch = "v1.0" }
 
 ## Non-langchain-ai org packages (alphabetical)
 langchain-tavily = { git = "https://github.com/tavily-ai/langchain-tavily.git" }
