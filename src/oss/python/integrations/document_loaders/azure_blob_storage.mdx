@@ -1,0 +1,137 @@
+---
+title: Azure Blob Storage Loader
+---
+
+>[Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction) is Microsoft's object storage solution for the cloud. Blob Storage is optimized for storing massive amounts of unstructured data. Unstructured data is data that doesn't adhere to a particular data model or definition, such as text or binary data.
+
+`Azure Blob Storage` is designed for:
+
+- Serving images or documents directly to a browser.
+- Storing files for distributed access.
+- Streaming video and audio.
+- Writing to log files.
+- Storing data for backup and restore, disaster recovery, and archiving.
+- Storing data for analysis by an on-premises or Azure-hosted service.
+
+This notebook covers how to load document objects from a container on `Azure Blob Storage`. For more detailed documentation on the document loader, see the [Azure Blob Storage Loader API Reference](https://reference.langchain.com/python/integrations/langchain_azure_storage/).
+
+> [!NOTE]
+> This document loader replaces the previous [`AzureBlobStorageFileLoader`](/oss/python/integrations/document_loaders/azure_blob_storage_file) and [`AzureBlobStorageContainerLoader`](/oss/python/integrations/document_loaders/azure_blob_storage_container) from `langchain_community`. It is recommended to use this new loader for better flexibility and customization when loading documents from Azure Blob Storage. For detailed instructions on migrating to the new loader, refer to the [migration guide](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-storage/README.md#migrating-from-langchain-community-azure-storage-document-loaders)
+
+
+## Installation
+
+```python
+pip install -qU  langchain-azure-storage
+```
+
+## Load from container
+
+```python
+from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
+
+loader = AzureBlobStorageLoader(
+    account_url="https://<storage-account-name>.blob.core.windows.net",
+    container="<container-name>",
+)
+
+for doc in loader.load():
+    print(doc)
+```
+
+```output
+[Document(page_content='Lorem ipsum dolor sit amet.', lookup_str='', metadata={'source': '/var/folders/y6/8_bzdg295ld6s1_97_12m4lr0000gn/T/tmpaa9xl6ch/fake.docx'}, lookup_index=0)]
+```
+
+You can also specify a prefix for more fine-grained control over what files to load.
+
+```python
+loader = AzureBlobStorageLoader(
+    account_url="https://<storage-account-name>.blob.core.windows.net",
+    container="<container-name>",
+    prefix="<prefix>",
+)
+```
+
+## Load from container by blob name
+
+You can load documents from a list of blob names, which uses only the blobs provided instead of a call to list blobs.
+
+```python
+loader = AzureBlobStorageLoader(
+    account_url="https://<storage-account-name>.blob.core.windows.net",
+    container_name="<container-name>",
+    blob_names=["blob-1", "blob-2", "blob-3"],
+)
+```
+
+## Override default credentials
+
+Below shows how to override the default credentials used by the document loader:
+
+```python
+from azure.core.credentials import AzureSasCredential
+from azure.identity import ManagedIdentityCredential
+from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
+
+# Override with SAS token
+loader = AzureBlobStorageLoader(
+    "https://<my-storage-account-name>.blob.core.windows.net",
+    "<my-container-name>",
+    credential=AzureSasCredential("<sas-token>")
+)
+
+# Override with more specific token credential than the entire
+# default credential chain (e.g., system-assigned managed identity)
+loader = AzureBlobStorageLoader(
+    "https://<my-storage-account-name>.blob.core.windows.net",
+    "<my-container-name>",
+    credential=ManagedIdentityCredential()
+)
+```
+
+## Customize blob content parsing
+
+Currently, the default when parsing each blob is to return the content as a single `Document` object with UTF-8 encoding regardless of the file type. For file types that require specific parsing (e.g., PDFs, CSVs, etc.) or when you want to control the document content format, you can provide the `loader_factory` argument to take in an already existing document loader (e.g., PyPDFLoader, CSVLoader, etc.) or a customized loader.
+
+This works by downloading the blob content to a temporary file. The `loader_factory` then gets called with the filepath to use the specified document loader to load/parse the file and return the `Document` object(s).
+
+Below shows how to override the default loader used to parse blobs as PDFs using the using the [PyPDFLoader](https://python.langchain.com/api_reference/community/document_loaders/langchain_community.document_loaders.pdf.PyPDFLoader.html#pypdfloader):
+
+```python
+from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
+from langchain_community.document_loaders import PyPDFLoader
+
+loader = AzureBlobStorageLoader(
+    account_url="https://<storage-account-name>.blob.core.windows.net",
+    container_name="<container-name>",
+    blob_names="<pdf-file.pdf>",
+    loader_factory=PyPDFLoader,
+)
+
+for doc in loader.lazy_load():
+    print(doc.page_content)  # Prints content of each page as a separate document
+```
+
+To provide additional configuration, you can define a callable that returns an instantiated document loader as shown below:
+
+```python
+from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
+from langchain_community.document_loaders import PyPDFLoader
+
+def loader_factory(file_path: str) -> PyPDFLoader:
+    return PyPDFLoader(
+        file_path,
+        mode="single",  # To return the PDF as a single document instead of extracting documents by page
+    )
+
+loader = AzureBlobStorageLoader(
+    account_url="https://<storage-account-name>.blob.core.windows.net",
+    container_name="<container-name>",
+    blob_names="<pdf-file.pdf>",
+    loader_factory=loader_factory,
+)
+
+for doc in loader.lazy_load():
+    print(doc.page_content)
+```
