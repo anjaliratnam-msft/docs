@@ -57,7 +57,7 @@ dependencies = [
     "langchain-aws",
     "langchain-azure-ai",
     #"langchain-azure-dynamic-sessions",
-    #"langchain-azure-storage",
+    "langchain-azure-storage",
     #"langchain-cerebras",
     #"langchain-cohere",
     #"langchain-db2",
