@@ -22,7 +22,7 @@ This notebook covers how to load document objects from a container on `Azure Blo
 ## Setup
 
 ```python
-pip install -qU  langchain-azure-storage
+pip install -qU langchain-azure-storage
 ```
 
 ```python
@@ -98,7 +98,7 @@ Currently, the default when parsing each blob is to return the content as a sing
 
 This works by downloading the blob content to a temporary file. The `loader_factory` then gets called with the filepath to use the specified document loader to load/parse the file and return the `Document` object(s).
 
-Below shows how to override the default loader used to parse blobs as PDFs using the using the [PyPDFLoader](https://python.langchain.com/api_reference/community/document_loaders/langchain_community.document_loaders.pdf.PyPDFLoader.html#pypdfloader):
+Below shows how to override the default loader used to parse blobs as PDFs using the [PyPDFLoader](https://python.langchain.com/api_reference/community/document_loaders/langchain_community.document_loaders.pdf.PyPDFLoader.html#pypdfloader):
 
 ```python
 from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
