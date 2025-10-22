@@ -107,7 +107,7 @@ Below shows how to override the default loader used to parse blobs as PDFs using
 
 ```python
 from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
-from langchain_community.document_loaders import PyPDFLoader  # This examples requires installing `langchain-community` and `pypdf`
+from langchain_community.document_loaders import PyPDFLoader  # This example requires installing `langchain-community` and `pypdf`
 
 loader = AzureBlobStorageLoader(
     "https://<storage-account-name>.blob.core.windows.net",
@@ -124,7 +124,7 @@ To provide additional configuration, you can define a callable that returns an i
 
 ```python
 from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
-from langchain_community.document_loaders import PyPDFLoader  # This examples requires installing `langchain-community` and `pypdf`
+from langchain_community.document_loaders import PyPDFLoader  # This example requires installing `langchain-community` and `pypdf`
 
 def loader_factory(file_path: str) -> PyPDFLoader:
     return PyPDFLoader(
