@@ -8,5 +8,4 @@ title: Azure Storage - LangChain Integration Reference
 [![PyPI - License](https://img.shields.io/pypi/l/langchain-azure-storage)](https://opensource.org/licenses/MIT)
 [![PyPI - Downloads](https://img.shields.io/pepy/dt/langchain-azure-storage)](https://pypistats.org/packages/langchain-azure-storage)
 
-
 ::: langchain_azure_storage.document_loaders
