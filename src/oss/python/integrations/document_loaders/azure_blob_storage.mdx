@@ -32,14 +32,14 @@ from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
 
 ## Load from container
 
-The `AzureBlobStorageLoader` loads all blobs from a given container in Azure Blob Storage. The loader returns [`Document`](https://reference.langchain.com/python/langchain_core/documents/?_gl=1*wrgkz*_gcl_au*MTY2OTY3Mzk1OS4xNzYwNDY2ODI3*_ga*NzYyOTQ1NTEyLjE3NTU4NzYzODk.*_ga_47WX3HKKY2*czE3NjExNTYwOTckbzUxJGcxJHQxNzYxMTU3NjU0JGo2MCRsMCRoMA..#langchain_core.documents.base.Document) objects containing the blob content (defaulting to UTF-8 encoding) and metadata including the blob URL, as shown in the example below.
+The `AzureBlobStorageLoader` loads all blobs from a given container in Azure Blob Storage and requires an [account URL and container name](https://learn.microsoft.com/en-us/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata#resource-uri-syntax). The loader returns [`Document`](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Document) objects containing the blob content (defaulting to UTF-8 encoding) and metadata including the blob URL, as shown in the example below.
 
 No explicit credential configuration is needed, as it uses [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/azure/developer/python/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview), which automatically retrieves [Microsoft Entra ID tokens](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) based on your current environment.
 
 ```python
 loader = AzureBlobStorageLoader(
-    account_url="https://<storage-account-name>.blob.core.windows.net",
-    container_name="<container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
 )
 
 for doc in loader.load():
@@ -54,8 +54,8 @@ You can also specify a prefix to only return blobs that start with that prefix.
 
 ```python
 loader = AzureBlobStorageLoader(
-    account_url="https://<storage-account-name>.blob.core.windows.net",
-    container_name="<container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     prefix="<prefix>",
 )
 ```
@@ -66,8 +66,8 @@ You can load documents from a list of blob names, which uses only the blobs prov
 
 ```python
 loader = AzureBlobStorageLoader(
-    account_url="https://<storage-account-name>.blob.core.windows.net",
-    container_name="<container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     blob_names=["blob-1", "blob-2", "blob-3"],
 )
 ```
@@ -110,8 +110,8 @@ from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
 from langchain_community.document_loaders import PyPDFLoader  # This examples requires installing `langchain-community` and `pypdf`
 
 loader = AzureBlobStorageLoader(
-    account_url="https://<storage-account-name>.blob.core.windows.net",
-    container_name="<container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     blob_names="<pdf-file.pdf>",
     loader_factory=PyPDFLoader,
 )
@@ -133,8 +133,8 @@ def loader_factory(file_path: str) -> PyPDFLoader:
     )
 
 loader = AzureBlobStorageLoader(
-    account_url="https://<storage-account-name>.blob.core.windows.net",
-    container_name="<container-name>",
+    "https://<storage-account-name>.blob.core.windows.net",
+    "<container-name>",
     blob_names="<pdf-file.pdf>",
     loader_factory=loader_factory,
 )
