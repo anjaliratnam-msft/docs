@@ -35,7 +35,7 @@ from langchain_azure_storage.document_loaders import AzureBlobStorageLoader
 ```python
 loader = AzureBlobStorageLoader(
     account_url="https://<storage-account-name>.blob.core.windows.net",
-    container="<container-name>",
+    container_name="<container-name>",
 )
 
 for doc in loader.load():
@@ -51,7 +51,7 @@ You can also specify a prefix for more fine-grained control over what files to l
 ```python
 loader = AzureBlobStorageLoader(
     account_url="https://<storage-account-name>.blob.core.windows.net",
-    container="<container-name>",
+    container_name="<container-name>",
     prefix="<prefix>",
 )
 ```
